@@ -1,0 +1,31 @@
+.taskHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 5rem;
+    background: #222;
+    color: #fff;
+
+    border: 5px solid #000000;
+}
+
+.drawer-button {
+    margin-left: 1rem;
+    order: 0;
+    max-width: 4rem;
+    max-height: 4rem;
+    cursor: pointer;
+    position: fixed;
+}
+
+.header-text{
+    text-align: center;
+    flex-grow: 1;
+}
+
+.divEse {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
