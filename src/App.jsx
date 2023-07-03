@@ -1,30 +1,22 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Bars3Icon } from '@heroicons/react/24/outline';
-import Drawer from './components/Drawer';
 import React, { useState } from 'react';
 import './components/Drawer.css';
-import { TaskList } from './components/TaskList';
 import 'animate.css'
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleMenuToggle = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   return (
-    <>
-      <header className='taskHeader'>
-        <Bars3Icon className='drawer-button' onClick={handleMenuToggle} />
-        <h1 className='header-text'>Task Manager</h1>
-      </header>
-      
-      <div className='divEse'>
-        <Drawer className='animate__animated animate__slideOutLeft' isOpen={menuOpen}/>
-        <TaskList />
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<h1>Home page</h1>} />
+        <Route path='/login' element={<h1>Login</h1>} />
+        <Route path='/register' element={<h1>Register</h1>} />
+        <Route path='/tasks' element={<h1>Tasks page</h1>} />
+        <Route path='/add-task' element={<h1>New Task</h1>} />
+        <Route path='/tasks/:id' element={<h1>Update Task</h1>} />
+        <Route path='/profile' element={<h1>Profile</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
