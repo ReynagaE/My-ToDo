@@ -8,7 +8,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<h1>Home page</h1>} />
+          <Route path='/' element={<RegisterPage />} />
           <Route path='/login' element={<h1>Login</h1>} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/tasks' element={<h1>Tasks page</h1>} />
