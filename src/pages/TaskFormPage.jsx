@@ -1,7 +1,9 @@
 function TaskFormPage() {
-    return(
-        <div>TaskFormPage</div>
-    )
+  return (
+    <div>
+      TaskFormPage
+    </div>
+  );
 }
 
-export default TaskFormPage
+export default TaskFormPage;
