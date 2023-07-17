@@ -1,11 +1,12 @@
 import axios from "./axios";
+import instance from "./axios";
 
-export const getListsRequest = () => axios.get('/lists')
+export const getListsRequest = () => instance.get('/lists')
 
-export const createListsRequest = (list) => axios.post('/lists', list)
+export const createListsRequest = (list) => instance.post('/lists', list)
 
-export const updateListsRequest = (list) => axios.put(`/lists/${list._id}`, list)
+export const updateListsRequest = (list) => instance.put(`/lists/${list._id}`, list)
 
-export const deleteListsRequest = (id) => axios.delete(`/lists/${id}`)
+export const deleteListsRequest = (id) => instance.delete(`/lists/${id}`)
 
-export const getListRequest = (id) => axios.get(`/lists/${id}`)
+export const getListRequest = (id) => instance.get(`/lists/${id}`)
