@@ -17,7 +17,6 @@ export const AuthProvider = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
-    Cookies.set() = Cookies.get()
 
     const signup = async (user) => {
         try {
@@ -60,7 +59,7 @@ export const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const checkLogin = async () => {
-          const cookies = Cookies.get();
+          const cookies = Cookies.get('token');
           if (!cookies.token) {
             setIsAuthenticated(false);
             setLoading(false);
