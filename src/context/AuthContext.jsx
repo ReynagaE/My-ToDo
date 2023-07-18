@@ -17,6 +17,7 @@ export const AuthProvider = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
+    Cookies.set() = Cookies.get()
 
     const signup = async (user) => {
         try {
