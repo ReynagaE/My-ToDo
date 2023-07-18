@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie"
 
 const instance = axios.create({
     baseURL: 'https://taskminderapi.onrender.com/api',
