@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/api",
-  withCredentials: true,
-});
+    baseURL: 'https://taskminderapi.onrender.com/api',
+    withCredentials: true,
+    credentials: "include"
+})
 
-export default instance;
+export default instance

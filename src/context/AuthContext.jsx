@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
-import Cookies from "js-cookie";
+import { registerRequest, loginRequest, verifyTokenRequest, profileRequest, logoutRequest } from "../api/auth";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -42,11 +42,37 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await logoutRequest();
+    } catch (error) {
+      console.error(error);
+    }
+
     setUser(null);
     setIsAuthenticated(false);
-    Cookies.remove("token");
   };
+
+  const checkLogin = async () => {
+    try {
+      const res = await profileRequest();
+      setUser(res.data);
+      setIsAuthenticated(true);
+    } catch (error) {
+      setUser(null);
+      setIsAuthenticated(false);
+      console.error(error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+  }, []);
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -58,26 +84,6 @@ export const AuthProvider = ({ children }) => {
   }, [errors]);
 
   useEffect(() => {
-    const checkLogin = async () => {
-      const token = Cookies.get("token");
-      if (!token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const res = await verifyTokenRequest();
-        console.log(res);
-        if (!res.data) return setIsAuthenticated(false);
-        setIsAuthenticated(true);
-        setUser(res.data);
-        setLoading(false);
-      } catch (error) {
-        setIsAuthenticated(false);
-        setLoading(false);
-      }
-    };
     checkLogin();
   }, []);
 
@@ -97,3 +103,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
