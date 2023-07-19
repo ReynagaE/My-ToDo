@@ -19,21 +19,25 @@ export const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
 
     const signup = async (user) => {
+        const cookies = Cookies.get();
         try {
             const res = await registerRequest(user);
             console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
+            Cookies.set('token', cookies)
         } catch (error) {
             setErrors(error.response.data)
         }
     }
 
     const signin = async (user) => {
+        const cookies = Cookies.get();
         try {
             const res = await loginRequest(user)
             setUser(res.data);
             setIsAuthenticated(true);
+            Cookies.set('token', cookies)
         } catch (error) {
             if (Array.isArray(error.response.data)) {
                 return setErrors(error.response.data)
@@ -60,6 +64,7 @@ export const AuthProvider = ({children}) => {
     useEffect(() => {
         const checkLogin = async () => {
           const cookies = Cookies.get();
+          
           if (!cookies.token) {
             setIsAuthenticated(false);
             setLoading(false);
@@ -73,6 +78,7 @@ export const AuthProvider = ({children}) => {
             setIsAuthenticated(true);
             setUser(res.data);
             setLoading(false);
+            
           } catch (error) {
             setIsAuthenticated(false);
             setLoading(false);
