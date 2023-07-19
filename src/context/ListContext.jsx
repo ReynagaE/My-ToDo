@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { createListsRequest, getListsRequest, updateListsRequest, deleteListsRequest } from "../api/list";
+import { createListRequest, getListsRequest, updateListsRequest, deleteListsRequest } from "../api/list";
 
 const ListContext = createContext();
 
@@ -27,7 +27,7 @@ export function ListProvider({ children }) {
 
   const createList = async (list) => {
     try {
-      const res = await createListsRequest(list);
+      const res = await createListRequest(list);
       console.log(res);
       getLists(); 
     } catch (error) {
