@@ -1,5 +1,6 @@
 import { useAuth } from "./context/AuthContext"
 import { Navigate, Outlet } from "react-router-dom"
+import instance from "./api/axios"
 
 function ProtectedRoute() {
     const {loading, isAuthenticated} = useAuth()
@@ -9,6 +10,8 @@ function ProtectedRoute() {
         Loading...
     </h1>
     if (!loading && !isAuthenticated) return <Navigate to='/login' replace />
+
+    instance.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
 
     return <Outlet/>
 }

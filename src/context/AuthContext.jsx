@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
+import instance from "../api/axios";
 
 export const AuthContext = createContext();
 
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", res.data.token);
       setUser(res.data);
       setIsAuthenticated(true);
+      instance.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
     } catch (error) {
       setErrors(error.response.data);
     }
@@ -34,6 +36,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", res.data.token);
       setUser(res.data);
       setIsAuthenticated(true);
+      instance.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
     } catch (error) {
       if (Array.isArray(error.response.data)) {
         return setErrors(error.response.data);
