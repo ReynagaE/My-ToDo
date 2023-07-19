@@ -10,10 +10,12 @@ import ProfilePage from './pages/ProfilePage';
 
 import ProtectedRoute from './ProtectedRoute';
 import { ListProvider } from './context/ListContext';
+import { TaskProvider } from './context/TaskContext';
 
 function App() {
   return (
     <AuthProvider>
+      <TaskProvider>
       <ListProvider>
       <BrowserRouter>
         <Routes>
@@ -21,15 +23,16 @@ function App() {
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/register' element={<RegisterPage />} />
 
-          
+          <Route element={<ProtectedRoute/>}>
             <Route path='/tasks' element={<TasksPage/>} />
             <Route path='/add-task' element={<TaskFormPage/>} />
             <Route path='/tasks/:id' element={<TaskFormPage/>} />
             <Route path='/profile' element={<ProfilePage/>} />
-          
+          </Route>
         </Routes>
       </BrowserRouter>
       </ListProvider>
+      </TaskProvider>
     </AuthProvider>
   );
 }
