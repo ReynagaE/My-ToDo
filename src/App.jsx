@@ -15,20 +15,18 @@ function App() {
   return (
     <AuthProvider>
       <ListProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<HomePage/>} />
-          <Route path='/login' element={<LoginPage/>} />
-          <Route path='/register' element={<RegisterPage />} />
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
 
-          <Route element={<ProtectedRoute/>}>
-            <Route path='/tasks' element={<TasksPage/>} />
-            <Route path='/add-task' element={<TaskFormPage/>} />
-            <Route path='/tasks/:id' element={<TaskFormPage/>} />
-            <Route path='/profile' element={<ProfilePage/>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <ProtectedRoute path='/tasks' element={<TasksPage />} />
+            <ProtectedRoute path='/add-task' element={<TaskFormPage />} />
+            <ProtectedRoute path='/tasks/:id' element={<TaskFormPage />} />
+            <ProtectedRoute path='/profile' element={<ProfilePage />} />
+          </Routes>
+        </BrowserRouter>
       </ListProvider>
     </AuthProvider>
   );
