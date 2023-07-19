@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom"
 import instance from "./api/axios"
 
 function ProtectedRoute() {
+    instance.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
     const {loading, isAuthenticated} = useAuth()
     console.log(loading, isAuthenticated)
 
