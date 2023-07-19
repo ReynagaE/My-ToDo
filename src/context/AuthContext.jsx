@@ -60,7 +60,7 @@ export const AuthProvider = ({children}) => {
     useEffect(() => {
         const checkLogin = async () => {
           const cookies = Cookies.get();
-          Cookies.set = cookies;
+          Cookies.set("token", cookies.token) = cookies;
           if (!cookies.token) {
             setIsAuthenticated(false);
             setLoading(false);
